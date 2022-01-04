@@ -30,6 +30,7 @@ case "$configs" in
 	 esac
 	echo -e "${WHITE}Creating git folder and cloning repository..." ; mkdir "$HOME/Git" && git clone https://github.com/rarafael/configs "$HOME/Git/configs" 
 	echo -e "${WHITE}removing previous files and creating links..." ; rm -rf "$HOME/.vimrc" && ln -s "$HOME/Git/configs/.vimrc" "$HOME/.vimrc" ; ln -s /usr/bin/vim /usr/bin/vi && ln -s "$HOME/Git/configs/.config/alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml" &&  echo -e "${GREEN}Links made Successfully" ; sleep 1
+	ln -s "$HOME/Git/configs/.config/ranger" "$HOME/.config/ranger"
 	echo -e "${WHITE}- - - Select a shell:  - - -"
 	select shell in "zsh" "dash" "keep bash"; do
 	    case $shell in
@@ -60,7 +61,7 @@ case "$configs" in
 	case $shell in
 	    "zsh" )
 		echo -e "${WHITE}creating .zshrc and profile"
-		mkdir "$HOME/.config/zsh" && ln -s "$HOME/Git/configs/.zshrc" "$HOME/.config/zsh/.zshrc" && ln -s "$HOME/Git/configs/.zprofile" "$HOME/.zprofile" && echo -e "${GREEN}zsh links set up successfully"
+		mkdir "$HOME/.config/zsh" && ln -s "$HOME/Git/configs/.config/.zshrc" "$HOME/.config/zsh/.zshrc" && ln -s "$HOME/Git/configs/.zprofile" "$HOME/.zprofile" && echo -e "${GREEN}zsh links set up successfully"
 		echo -e "${WHITE}setting zsh as default shell..."
 		chsh -s /usr/bin/zsh && echo -e "${GREEN}zsh set up successfully";;
 	    "dash" )
@@ -98,7 +99,8 @@ case "$configs" in
 		    echo -e "${GREEN}No desktop enviroment installed"
 		    break;;
 		"sway" )
-		    echo -e "${WHITE}Installing sway and setting up config..." ; pacman -S --noconfirm sway mako && ln -s "$HOME/Git/configs/.config/sway/config" "$HOME/.config/sway/config" && echo -e "${GREEN}Sway Installed successfully"
+		    echo -e "${WHITE}Installing sway and setting up config..." ; pacman -S --noconfirm sway swayidle swaylock mako waybar ttf-joypixels && ln -s "$HOME/Git/configs/.config/sway" "$HOME/.config/sway" && ln -s "$HOME/git/configs/.config/waybar" "$HOME/.config/waybar" 
+		    echo "if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then" >> $HOME/.zprofile && echo "    exec sway" >> $HOME/.zprofile && echo "fi" >> $HOME/.zprofile && echo -e "${GREEN}Sway Installed successfully"
 		    break;;
 		* )
 	    esac

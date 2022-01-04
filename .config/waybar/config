@@ -1,0 +1,44 @@
+{
+    "layer": "bottom",
+	"modules-left": ["sway/workspaces", "sway/mode"],
+	"modules-right": ["tray", "pulseaudio", "network", "custom/weather", "clock"],
+	"sway/window": {
+	"height": 14,
+	"max-length": 50
+    },
+    "tray": {
+	"icon-size": 16,
+	"spacing": 6,
+    },
+    "clock": {
+	"format": "{:📅 %Y %b %d (%a) 🕓 %R}"
+    },
+    "network": {
+	"format": "{ifname}",
+	"format-wifi": "📡 {essid} ({signalStrength}%)",
+	"format-ethernet": "🔌 {ipaddr}/{cidr}",
+	"format-disconnected": "", //An empty format will hide the module.
+	"tooltip-format": "{ifname} via {gwaddr}",
+	"tooltip-format-wifi": "{essid} ({signalStrength}%)",
+	"tooltip-format-ethernet": "{ifname}",
+	"tooltip-format-disconnected": "Disconnected",
+	"max-length": 50
+    },
+    "pulseaudio": {
+	"format": "🔊 {volume}%",
+	"format-muted": "🔇",
+    },
+    "custom/weather": {
+	"exec": "curl 'https://wttr.in/?format=1'",
+	"interval": 1800
+    },
+    "mpd": {
+	"format": "{state-icon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+	"format-disconnected": "Disconnected",
+	"interval": 10,
+	"state-icons" : {
+	    "paused": "",
+	    "playing": "🎵"
+	},
+    }
+}

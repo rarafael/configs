@@ -11,12 +11,11 @@ set autoread
 set confirm
 set autoindent
 set shiftwidth=4
-set smartindent
+set autoindent
 set smarttab
 set softtabstop=4
 set ruler
 set path+=**
-set nocompatible
 set wildmenu
 set showcmd
 set showmatch
@@ -25,12 +24,20 @@ set showmatch
 " Plugins:
 " ########
 syntax enable
-filetype plugin on
+filetype plugin indent on
+
+" ##########
+" Functions:
+" ##########
+function CommentLine()
+    normal! ^i#
+endfunction
 
 " #######
 " Remaps:
 " #######
 nnoremap S :%s//g<Left><Left>
-nnoremap <C-c> ^i#<Esc>j
+nnoremap <C-c> :call CommentLine()<cr>
+nnoremap <C-j> /<++><cr>ci<
 nnoremap ; :
 nnoremap : ;
