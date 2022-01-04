@@ -1,6 +1,5 @@
 #!/bin/sh
 WHITE='\033[1;37m' ; GREEN='\033[0;32m' ; NOCOLOR='\033[0m'
-printf "\n${WHITE}Setting up vim...\n"
 printf "Installing packages...\n${NOCOLOR}" ; pacman -S --noconfirm --quiet --needed vim alacritty git sway zsh zsh-syntax-highlighting sway swayidle swaylock mako waybar ttf-joypixels ranger
 git clone https://github.com/rarafael/configs "$HOME/Git/configs"
 printf "\n${WHITE}Making links...${NOCOLOR}"
