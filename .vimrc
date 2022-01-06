@@ -3,6 +3,7 @@ source $VIMRUNTIME/defaults.vim
 " ########
 " Options:
 " ########
+
 set history=150
 set number relativenumber
 set title
@@ -23,21 +24,24 @@ set showmatch
 " ########
 " Plugins:
 " ########
+
 syntax enable
 filetype plugin indent on
 
 " ##########
 " Functions:
 " ##########
+
+nnoremap <C-c> :call CommentLine()<cr>
 function CommentLine()
-    normal! ^i#
+    normal mc0i#
 endfunction
 
 " #######
 " Remaps:
 " #######
+
 nnoremap S :%s//g<Left><Left>
-nnoremap <C-c> :call CommentLine()<cr>
-nnoremap <C-j> /<++><cr>ci<
+nnoremap <C-j> /<++><cr>ca<
 nnoremap ; :
 nnoremap : ;

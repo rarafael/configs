@@ -1,62 +1,70 @@
 ### Variables
 
-# Logo key. Use Mod1 for Alt.
-
+# Super Key setting
 set $mod Mod4
 
-# Home row direction keys, like vim
-
+# Vim bindings
 set $left h
 set $down j
 set $up k
 set $right l
 
+# Application variables
 set $term alacritty
 set $menu dmenu_path | dmenu -nb '#000000' -fn 'Px437IBMVGA8x16' | xargs swaymsg exec --
 set $browser firefox
+set $screenshot grim -g "$(slurp)"
 
 ### Key bindings
 
+    # Exec applications
     bindsym $mod+Control+t exec $term
     bindsym $mod+Control+b exec $browser
-    bindsym $mod+Control+s exec grim
+    bindsym $mod+Control+s exec $screenshot
 
+    # Kill currently focused window
     bindsym $mod+q kill
 
+    # Open up dmenu
     bindsym $mod+d exec $menu
 
     floating_modifier $mod normal
 
+    # Reload sway config
     bindsym $mod+Shift+c reload
 
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # Locking and shutdown
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' 
     bindsym $mod+Shift+n exec swaylock -f -c 000000
     bindsym $mod+Shift+Control+s exec shutdown -P +1 ; exec notify-send -t 8000 "📣 Shutdown scheduled in 1 minute!"
-    bindsym $mod+Shift+Control+Mod1+s exec shutdown -P +0 
+    bindsym $mod+Shift+Control+Mod1+s exec systemctl -i poweroff
 
+    # Keyboard volume keys
     bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
     bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
     bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 ### Moving around:
 
-    # Move your focus around
+    # Focus change with Vim keys
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
+
+    # Focus change with arrows
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
+    # Move around with Vim keys
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
+
+    # Move around with arrows
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
@@ -70,7 +78,7 @@ set $browser firefox
 
 ### Workspaces:
 
-    # Switch to workspace
+    # Change workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
@@ -81,7 +89,8 @@ set $browser firefox
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
+
+    # Move windows around workspaces
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
     bindsym $mod+Shift+3 move container to workspace number 3
@@ -92,32 +101,21 @@ set $browser firefox
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 
 ### Layout stuff:
 
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
+    # Split mode
     bindsym $mod+Shift+b splith
     bindsym $mod+Shift+v splitv
 
-    # Switch the current container between different layout styles
-    #    bindsym $mod+s layout stacking
-    #    bindsym $mod+w layout tabbed
-    #    bindsym $mod+e layout toggle split
-
-    # Make the current focus fullscreen
+    # Turn on fullscreen
     bindsym $mod+Shift+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
+    # Make window floating
     bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
+    # Change window focus
     bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
     bindsym $mod+a focus parent
 
 ### Visual Settings:
@@ -129,6 +127,7 @@ bar {
 }
 
 font pango: Px437IBMVGA8x16 8
+
 input "type:keyboard" {
     xkb_layout br
 }
@@ -141,13 +140,11 @@ output "*" bg /home/rafael/Documents/wallpapers/mountain_lakes.jpg fill
 
 # Window Settings:
 
-for_window [class="^.*"] inhibit_idle fullscreen
-for_window [app_id="^.*"] inhibit_idle fullscreen
-for_window [shell=".*"] inhibit_idle fullscreen
-for_window [class="firefox"] inhibit_idle 
-for_window [app_id="firefox"] inhibit_idle 
-for_window [title="About Mozilla Firefox"] floating enable
-for_window [class="steam_app.*"] inhibit_idle fullscreen
-for_window [title="Friends List"] floating enable
+for_window [class="firefox" title="About Mozilla Firefox"] floating enable
+for_window [class="firefox" title="Library"] floating enable
+for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="dolphin-emu"] floating enable
 assign [class="Steam"] workspace number 3
+assign [title="Discord"] workspace number 4
+assign [class="discord"] workspace number 4
 include /etc/sway/config.d/*
