@@ -7,13 +7,11 @@ nnoremap <Space> <Nop>
 " ########
 
 set autoindent
-set autoindent
 set autoread
 set confirm
 set history=150
 set number relativenumber
 set path+=**
-set ruler
 set shiftwidth=4
 set showcmd
 set showmatch
@@ -28,19 +26,24 @@ set wildmenu
 " Plugins:
 " ########
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+call plug#end()
+
 syntax enable
 filetype plugin indent on
 
 " ##########
 " Functions:
 " ##########
-
-" Comment Line
-function CommentLine()
-   normal! mc0i#
-   normal! `c
-endfunction
-nnoremap <Leader>cm :call CommentLine()<cr>
 
 " Trailing Whitespace
 highlight TrailingWhitespace ctermbg=red
@@ -55,7 +58,10 @@ nnoremap <Leader>wt :%s/\s\+$//g<cr>
 " Remaps:
 " #######
 
-nnoremap <C-j> /<++><cr>ca<
+nnoremap <Leader><Space> /<++><cr>ca<
 nnoremap Y y$
 nnoremap ; :
 nnoremap : ;
+nnoremap <C-e> :tabedit<Space>
+nnoremap <C-n> :tabnext<cr>
+nnoremap <C-p> :tabprev<cr>

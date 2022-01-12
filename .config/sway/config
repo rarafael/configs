@@ -13,22 +13,21 @@ set $right l
 set $term alacritty
 set $menu dmenu_path | dmenu -nb '#000000' -fn 'Px437IBMVGA8x16' | xargs swaymsg exec --
 set $browser firefox
-set $screenshot grim -g "$(slurp)"
+set $file alacritty -e ranger
 
 ### Key bindings
 
     # Exec applications
     bindsym $mod+Control+t exec $term
     bindsym $mod+Control+b exec $browser
-    bindsym $mod+Control+s exec $screenshot
+    bindsym $mod+Control+s exec $file
+    bindsym $mod+Shift+s exec grimshot --notify copy area
 
     # Kill currently focused window
     bindsym $mod+q kill
 
     # Open up dmenu
     bindsym $mod+d exec $menu
-
-    floating_modifier $mod normal
 
     # Reload sway config
     bindsym $mod+Shift+c reload
@@ -43,6 +42,10 @@ set $screenshot grim -g "$(slurp)"
     bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
     bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
     bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+    # Scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
 
 ### Moving around:
 
@@ -143,6 +146,7 @@ output "*" bg /home/rafael/Documents/wallpapers/mountain_lakes.jpg fill
 for_window [class="firefox" title="About Mozilla Firefox"] floating enable
 for_window [class="firefox" title="Library"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
+for_window [class="steam_app_250900"] floating enable
 for_window [class="dolphin-emu"] floating enable
 assign [class="Steam"] workspace number 3
 assign [title="Discord"] workspace number 4
