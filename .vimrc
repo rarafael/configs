@@ -1,6 +1,8 @@
 source $VIMRUNTIME/defaults.vim
+
+" Change leader to <Space>
 let mapleader = " "
-nnoremap <Space> <Nop>
+nnoremap <SPACE> <Nop>
 
 " ########
 " Options:
@@ -18,6 +20,7 @@ set showmatch
 set smartcase
 set smarttab
 set softtabstop=4
+set splitbelow splitright
 set title
 set viminfo='10,<100,:100,%,n~/.cache/vim/.viminfo
 set wildmenu
@@ -34,8 +37,10 @@ endif
 
 call plug#begin()
 Plug 'ervandew/supertab'
+Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 syntax enable
@@ -51,14 +56,28 @@ match TrailingWhitespace /\s\+$/
 autocmd InsertLeave * match TrailingWhitespace /\s\+$/
 autocmd InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,BufNew * match TrailingWhitespace /\s\+$/
-" More aggresive highlightining approach " call matchadd('TrailingWhitespace', '\s\+$', 100)
+" More aggresive highlightining approach:
+" call matchadd('TrailingWhitespace', '\s\+$', 100)
 nnoremap <Leader>wt :%s/\s\+$//g<cr>
 
 " #######
 " Remaps:
 " #######
 
-nnoremap <Leader><Space> /<++><cr>ca<
+" Leader keybinds
+nnoremap <Leader>gg :Git<cr>
+nnoremap <Leader>gd :Git diff<cr>
+nnoremap <Leader>gc :Git commit<cr>
+nnoremap <Leader>f :Goyo<cr>
+nnoremap <Leader>j /<++><cr>ca<
+
+" Keybinds for the clipboard
+nnoremap <Leader>cp :read !echo "$(wl-paste -p)"<cr>
+nnoremap <Leader>cc V::w !wl-copy -p<cr><cr>
+vnoremap P c<Esc>k:read !echo "$(wl-paste -p)"<cr>
+vnoremap Y ::w !wl-copy -p<cr><cr>
+
+" Other
 nnoremap Y y$
 nnoremap ; :
 nnoremap : ;

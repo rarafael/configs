@@ -135,7 +135,7 @@ input "type:keyboard" {
     xkb_layout br
 }
 
-gaps inner 8
+gaps inner 6
 gaps outer 6
 default_border pixel
 default_floating_border pixel
