@@ -1,19 +1,26 @@
 ### Variables
 
 # Super Key setting
-set $mod Mod4
+
+    set $mod Mod4
 
 # Vim bindings
-set $left h
-set $down j
-set $up k
-set $right l
+
+    set $left h
+    set $down j
+    set $up k
+    set $right l
 
 # Application variables
-set $term alacritty
-set $menu dmenu_path | dmenu -nb '#000000' -fn 'Px437IBMVGA8x16' | xargs swaymsg exec --
-set $browser firefox
-set $file alacritty -e ranger
+
+    set $term alacritty
+    set $menu dmenu_path | dmenu -nb '#000000' -fn 'Px437IBMVGA8x16' | xargs swaymsg exec --
+    set $browser firefox
+    set $file alacritty -e ranger
+
+# Starting apps
+
+    exec --no-startup-id pactl set-sink-volume 0 50%
 
 ### Key bindings
 
@@ -21,6 +28,8 @@ set $file alacritty -e ranger
     bindsym $mod+Control+t exec $term
     bindsym $mod+Control+b exec $browser
     bindsym $mod+Control+s exec $file
+
+    # Screenshot script
     bindsym $mod+Shift+s exec grimshot --notify copy area
 
     # Kill currently focused window
@@ -33,10 +42,10 @@ set $file alacritty -e ranger
     bindsym $mod+Shift+c reload
 
     # Locking and shutdown
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+Shift+n exec swaylock -f -c 000000
-    bindsym $mod+Shift+Control+s exec shutdown -P +1 ; exec notify-send -t 8000 "📣 Shutdown scheduled in 1 minute!"
-    bindsym $mod+Shift+Control+Mod1+s exec systemctl -i poweroff
+    bindsym $mod+Shift+F9 exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+F10 exec swaylock -f -c 000000
+    bindsym $mod+Shift+Control+F11 exec shutdown -P +1 ; exec notify-send -t 8000 "📣 Shutdown scheduled in 1 minute!"
+    bindsym $mod+Shift+Control+Mod1+F12 exec systemctl -i poweroff
 
     # Keyboard volume keys
     bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -74,10 +83,26 @@ set $file alacritty -e ranger
     bindsym $mod+Shift+Right move right
 
     # Resize windows
-    bindsym $mod+Shift+y resize shrink width 10px
-    bindsym $mod+Shift+u resize grow height 10px
-    bindsym $mod+Shift+i resize shrink height 10px
-    bindsym $mod+Shift+o resize grow width 10px
+    bindsym $mod+Shift+y resize shrink height 15px
+    bindsym $mod+Shift+u resize grow height 15px
+    bindsym $mod+Shift+i resize shrink width 15px
+    bindsym $mod+Shift+o resize grow width 15px
+
+    bindsym $mod+Shift+Control+y resize shrink height 30px
+    bindsym $mod+Shift+Control+u resize grow height 30px
+    bindsym $mod+Shift+Control+i resize shrink width 30px
+    bindsym $mod+Shift+Control+o resize grow width 30px
+
+    # Gaps settings
+    bindsym $mod+Shift+m gaps outer current plus 2
+    bindsym $mod+Shift+n gaps outer current minus 2
+    bindsym $mod+Shift+Control+m gaps outer current plus 4
+    bindsym $mod+Shift+Control+n gaps outer current minus 4
+
+    bindsym $mod+Shift+z gaps inner current plus 2
+    bindsym $mod+Shift+x gaps inner current minus 2
+    bindsym $mod+Shift+Control+z gaps inner current plus 4
+    bindsym $mod+Shift+Control+x gaps inner current minus 4
 
 ### Workspaces:
 
@@ -129,26 +154,28 @@ bar {
     swaybar_command waybar
 }
 
-font pango: Px437IBMVGA8x16 8
+# Font:
+font pango: Px437 IBM VGA 8
 
+# Keyboard Layout:
 input "type:keyboard" {
     xkb_layout br
 }
+
+# Window Settings:
 
 gaps inner 6
 gaps outer 6
 default_border pixel
 default_floating_border pixel
-output "*" bg /home/rafael/Documents/wallpapers/mountain_lakes.jpg fill
-
-# Window Settings:
 
 for_window [class="firefox" title="About Mozilla Firefox"] floating enable
 for_window [class="firefox" title="Library"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
-for_window [class="steam_app_250900"] floating enable
 for_window [class="dolphin-emu"] floating enable
 assign [class="Steam"] workspace number 3
-assign [title="Discord"] workspace number 4
-assign [class="discord"] workspace number 4
+assign [title="Discord"] workspace number 2
+assign [class="discord"] workspace number 2
+
+output "*" bg /home/rafael/Documents/wallpapers/mountain_snow.jpg fill
 include /etc/sway/config.d/*

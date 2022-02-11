@@ -13,6 +13,7 @@ unsetopt beep
 autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
+bindkey -v
 
 alias cp='cp -iv'
 alias mv='mv -iv'
@@ -23,10 +24,11 @@ alias nvim='vim'
 alias ls='ls -Ahl --color=auto'
 alias sl='ls -Ahl --color=auto'
 alias exiit='exit'
-alias tar-unpack='tar -zxvf'
+alias tar-unpack='tar -xvf'
 alias tar-create='tar -cvf'
 alias tar-pack='tar -cvf'
-alias 7z-extract='7z x -bt'
 alias wttr='curl -s wttr.in | grep -v "Follow"'
 alias sxiv='sxiv -a'
+alias du='du -h'
+alias uptime='uptime -p'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
