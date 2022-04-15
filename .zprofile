@@ -19,6 +19,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export CALCHISTFILE="$XDG_CACHE_HOME/calc_history"
 export GRIM_DEFAULT_DIR="$HOME/Documents/screenshots"
+export MOZ_ENABLE_WAYLAND=1
 
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
       exec sway
