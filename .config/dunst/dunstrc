@@ -24,7 +24,7 @@
     frame_color = "#181818"
     separator_color = frame
     sort = yes
-    font = Px437 IBM VGA 8x16 12
+    font = IosevkaMedium 12
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"

@@ -14,9 +14,9 @@ set $right l
 # Application variables
 
 set $term alacritty
-set $menu dmenu_path | dmenu -nb '#000000' -fn 'Px437IBMVGA8x16' | xargs swaymsg exec --
+set $menu dmenu_path | dmenu -nb '#000000' -fn 'IosevkaMedium' | xargs swaymsg exec --
 set $browser firefox
-set $file alacritty -e ranger
+set $file alacritty -e vifm
 
 ### Key bindings
 
@@ -151,7 +151,7 @@ swaybar_command waybar
 }
 
 # Font:
-font pango: Px437 IBM VGA 8
+font pango: Iosevka 
 
 # Keyboard Layout:
 input "type:keyboard" {

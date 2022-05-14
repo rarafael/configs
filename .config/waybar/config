@@ -1,8 +1,8 @@
 {
     "layer": "bottom",
 	"modules-left": ["sway/workspaces", "sway/mode"],
-	// "modules-center": ["sway/window"],
-	"modules-right": ["tray", "pulseaudio", "network", "custom/weather", "clock"],
+	"modules-center": ["sway/window"],
+	"modules-right": ["tray", "pulseaudio", "memory", "network", "clock"],
 	"sway/window": {
 	"height": 14,
 	"max-length": 50
@@ -28,6 +28,11 @@
     "pulseaudio": {
 	"format": "🔊 {volume}%",
 	"format-muted": "🔇",
+    },
+    "memory": {
+	"interval": 30,
+	"format": "📼 {}%",
+	"max-length": 10
     },
     "custom/weather": {
 	"exec": "curl 'https://wttr.in/?format=1'",

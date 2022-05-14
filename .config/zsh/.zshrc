@@ -13,7 +13,6 @@ unsetopt beep
 autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
-bindkey -v
 
 alias cp='cp -iv'
 alias mv='mv -iv'
@@ -29,4 +28,5 @@ alias du='du -h'
 alias uptime='uptime -p'
 alias diff='diff -u'
 alias claer='clear'
+alias cp='cp -r'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -46,6 +46,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-syntastic/syntastic'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'morhetz/gruvbox'
+Plug 'vifm/vifm.vim'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 syntax enable
@@ -79,6 +81,8 @@ vnoremap <S-p> c<Esc>k:read !echo "$(wl-paste --primary)"<cr>
 vnoremap <S-y> ::w !wl-copy --primary<cr><cr>
 
 " Other
+nnoremap j gj
+nnoremap k gk
 nnoremap <S-y> y$
 nnoremap ; :
 nnoremap : ;
