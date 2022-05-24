@@ -13,6 +13,7 @@ nnoremap <SPACE> <Nop>
 set autoindent
 set autoread
 set confirm
+set cul
 set history=150
 set mouse=a
 set number relativenumber
@@ -58,6 +59,8 @@ filetype plugin indent on
 " #########
 
 autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null"
+autocmd BufEnter *.fasm silent! execute "set ft=fasm"
+autocmd BufEnter README silent! execute "set ft=markdown"
 
 " #######
 " Remaps:
@@ -73,6 +76,9 @@ nnoremap <Leader>tw :term make<cr>
 nnoremap <Leader>n :tabnext<cr>
 nnoremap <Leader>p :tabprev<cr>
 nnoremap <Leader>e :tabedit 
+nnoremap <leader>tn :sp ~/.local/share/TODO.md<CR><C-w>L
+nnoremap <leader>tp :vertical term++close python<cr>
+nnoremap <leader>m :vertical term++close man 
 
 " Keybinds for the clipboard
 nnoremap <Leader>cp :read !echo "$(wl-paste --primary)"<cr>
@@ -104,8 +110,6 @@ inoremap <C-u> <Esc>u
 inoremap <C-y> <Esc>yyp
 vnoremap <S-k> {
 vnoremap <S-j> }
-vnoremap i <S-i>
-vnoremap a <S-a>
 vnoremap ; :
 vnoremap : ;
 nnoremap ! :! 

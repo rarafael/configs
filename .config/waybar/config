@@ -2,7 +2,7 @@
     "layer": "bottom",
 	"modules-left": ["sway/workspaces", "sway/mode"],
 	"modules-center": ["sway/window"],
-	"modules-right": ["tray", "pulseaudio", "memory", "network", "clock"],
+	"modules-right": ["tray", "pulseaudio", "memory", "network", "custom/weather", "clock"],
 	"sway/window": {
 	"height": 14,
 	"max-length": 50
@@ -12,12 +12,12 @@
 	"spacing": 6,
     },
     "clock": {
-	"format": "{:📅 %Y %b %d (%a) 🕓 %R}"
+	"format": "{:  %Y %b %d (%a)   %R}"
     },
     "network": {
 	"format": "{ifname}",
-	"format-wifi": "📡 {essid}",
-	"format-ethernet": "🔌 {ipaddr}/{cidr}",
+	"format-wifi": "﬉ {essid}",
+	"format-ethernet": "  {ipaddr}/{cidr}",
 	"format-disconnected": "", //An empty format will hide the module.
 	"tooltip-format": "{ifname} via {gwaddr}",
 	"tooltip-format-wifi": "{essid} ({signalStrength}%)",
@@ -26,12 +26,12 @@
 	"max-length": 50
     },
     "pulseaudio": {
-	"format": "🔊 {volume}%",
-	"format-muted": "🔇",
+	"format": "  {volume}%",
+	"format-muted": "ﱝ ",
     },
     "memory": {
 	"interval": 30,
-	"format": "📼 {}%",
+	"format": "  {}%",
 	"max-length": 10
     },
     "custom/weather": {

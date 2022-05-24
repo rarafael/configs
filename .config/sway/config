@@ -14,7 +14,7 @@ set $right l
 # Application variables
 
 set $term alacritty
-set $menu dmenu_path | dmenu -nb '#000000' -fn 'IosevkaMedium' | xargs swaymsg exec --
+set $menu bemenu-run --fn 'Iosevka Nerd Font 12' --nb '#1d2021' --nf '#ebdbb2' --tb '#000000' --tf '#b8bb26' --sb '#1d2021' --sf '#b8bb26' --fb '#1d2021' --ff '#ebdbb2' --fbb '#000000' --fbf '#b8bb26' --hb '#000000' --hf '#b8bb26' 
 set $browser firefox
 set $file alacritty -e vifm
 
@@ -170,6 +170,16 @@ for_window [class="firefox" title="About Mozilla Firefox"] floating enable
 for_window [class="firefox" title="Library"] floating enable
 for_window [class="Steam" title="Friends List"] floating enable
 for_window [class="dolphin-emu"] floating enable
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable;
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] resize set 800 600
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [app_id = "xdg-desktop-portal-gtk"] floating enable;
+for_window [app_id = "xdg-desktop-portal-gtk"] resize set 800 600;
 assign [class="Steam"] workspace number 5
 assign [title="Discord"] workspace number 4
 assign [class="discord"] workspace number 4
