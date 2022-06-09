@@ -3,16 +3,15 @@
 set -e
 
 WHITE='\033[1;37m' ; GREEN='\033[0;32m' ; NOCOLOR='\033[0m'
-printf "\nInstalling packages...\n${NOCOLOR}" ; pacman -S --noconfirm --quiet --needed vim alacritty git zsh zsh-syntax-highlighting sway swaylock dunst waybar vifm zathura zathura-pdf-mupdf imv mpv ncdu xorg-xwayland bemenu wl-clipboard jq grim slurp btop firefox steam discord pacman-contrib fd man-pages noto-fonts-cjk
+printf "\nInstalling packages...\n${NOCOLOR}" ; pacman -S --noconfirm --quiet --needed nvim alacritty git zsh zsh-syntax-highlighting sway swaylock dunst waybar vifm zathura zathura-pdf-mupdf imv mpv ncdu xorg-xwayland bemenu wl-clipboard jq grim slurp btop firefox steam discord pacman-contrib fd man-pages noto-fonts-cjk
 mkdir -v "$HOME/Git"
 git clone https://github.com/rarafael/configs "$HOME/Git" ; git pull
 curl -o "$HOME/Git/configs/.config/vifm/colors/gruvbox.vifm" "https://raw.githubusercontent.com/vifm/vifm-colors/master/gruvbox.vifm"
 printf "\n${WHITE}Making links...${NOCOLOR}"
 mkdir -v "$HOME/.local/bin"
 mkdir -v "$HOME/Documents/screenshots"
-ln -sv /usr/bin/vim /usr/bin/vi
 ln -sfv "$HOME/Git/configs/.config/alacritty" "$HOME/.config/alacritty"
-ln -sfv "$HOME/Git/configs/.vimrc" "$HOME/.vimrc"
+ln -sfv "$HOME/Git/configs/.config/nvim" "$HOME/.config/nvim"
 ln -sfv "$HOME/Git/configs/.zprofile" "$HOME/.zprofile"
 ln -sfv "$HOME/Git/configs/.config/zsh" "$HOME/.config/zsh" && chsh -s /usr/bin/zsh "$(id -u -n 1000)"
 ln -sfv "$HOME/Git/configs/.config/sway" "$HOME/.config/sway"
