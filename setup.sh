@@ -3,7 +3,7 @@
 set -e
 
 WHITE='\033[1;37m' ; GREEN='\033[0;32m' ; NOCOLOR='\033[0m'
-printf "\nInstalling packages...\n${NOCOLOR}" ; pacman -S --noconfirm --quiet --needed vim alacritty git zsh zsh-syntax-highlighting sway swaylock dunst waybar vifm zathura zathura-pdf-mupdf imv mpv slurp ncdu xorg-xwayland dmenu wl-clipboard jq grim btop firefox steam discord pacman-contrib fd man-pages
+printf "\nInstalling packages...\n${NOCOLOR}" ; pacman -S --noconfirm --quiet --needed vim alacritty git zsh zsh-syntax-highlighting sway swaylock dunst waybar vifm zathura zathura-pdf-mupdf imv mpv ncdu xorg-xwayland bemenu wl-clipboard jq grim slurp btop firefox steam discord pacman-contrib fd man-pages noto-fonts-cjk
 mkdir -v "$HOME/Git"
 git clone https://github.com/rarafael/configs "$HOME/Git" ; git pull
 curl -o "$HOME/Git/configs/.config/vifm/colors/gruvbox.vifm" "https://raw.githubusercontent.com/vifm/vifm-colors/master/gruvbox.vifm"
@@ -23,7 +23,7 @@ ln -sfv "$HOME/Git/configs/.config/rofi" "$HOME/.config/rofi"
 cp -v "/usr/share/sway/scripts/grimshot" "$HOME/.local/bin/grimshot" && mkdir "$HOME/Documents/screenshots"
 mkdir "$HOME/.local/share/fonts"
 curl -o "$HOME/.local/share/fonts/Iosevka.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Iosevka.zip" && 7z x Iosevka.zip && fc-cache && rm "$HOME/.local/share/fonts/Iosevka.zip"
-printf "\n${GREEN}Installation succesfull"
+printf "\n${GREEN}Installation successfull"
 printf "\n${WHITE}Would you like to reboot? (Y/n) " ; read -r yn ; case $yn in
 [] | [Yy]* )
     printf "\nRebooting in 6 seconds..." ; sleep 6 && reboot;;
