@@ -54,25 +54,6 @@ call plug#end()
 syntax enable
 filetype plugin indent on
 
-" RVasm syntax
-syntax keyword rvasmInstructions
-	    \ lui auipc jal jalr beq bne blt bge bltu bgeu lb lh lw lbu lhu
-	    \ sb sh sw addi slti sltiu xori ori andi slli srai add sub sll
-	    \ slt sltu xor srl sra or and fence ecall ebreak
-syntax keyword rvasmRegister
-	    \ zero ra sp gp tp t0 t1 t2 fp s0 s1 s2 s3 a0 a2 a3 a4 a5 a6 a7
-	    \ s4 s5 s6 s7 s8 s9 s10 s11 t3 t4 t5 t6
-	    \ ft0 ft1 ft2 ft3 ft4 ft5 ft6 ft7 ft8 ft9 ft10 ft11
-	    \ fs0 fs1 fs2 fs3 fs4 fs5 fs6 fs7 fs8 fs9 fs10 fs11
-	    \ fa0 fa1
-syntax match rvasmNumber "<\d+>"
-syntax match rvasmNumber "<0x([Pp]-?)?>"
-syntax match rvasmNumber "<0b[01]+>"
-syntax match rvasmNumber "<0o\o+>"
-
-hi def link rvasmInstructions Operator
-hi def link rvasmRegister Keyword
-
 " #########
 " Autocmds:
 " #########
@@ -80,8 +61,6 @@ hi def link rvasmRegister Keyword
 autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null"
 autocmd BufEnter *.fasm silent! execute "set ft=fasm"
 autocmd BufEnter README silent! execute "set ft=markdown"
-
-autocmd BufNewFile,BufEnter *.rvasm silent! execute "set ft=rvasm"
 
 " #######
 " Remaps:
