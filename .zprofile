@@ -1,5 +1,5 @@
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="firefox"
 export TERMINAL="alacritty"
 
@@ -9,6 +9,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
+export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -\""
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/.pythonrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
