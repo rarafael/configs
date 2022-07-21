@@ -192,5 +192,5 @@ assign [class="Steam"] workspace number 5
 assign [title="Discord"] workspace number 4
 assign [class="discord"] workspace number 4
 
-output "*" bg /home/rafael/Git/configs/moon.png fill
+output "*" bg /home/rafael/Git/configs/darksideofthemoon.png fill
 include /etc/sway/config.d/*
